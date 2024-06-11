@@ -21,15 +21,25 @@ Thickness/Radius: 0.176 cm
 Geometry:Slab
 Temperature (°C):20
 RH	D / cm^2/s	Temperature(°C)	Weights
+
 0.200000	3.859221e-08	20.000000	1.000000
+
 0.400000	3.610725e-08	20.000000	1.000000
+
 0.600000	3.862852e-08	20.000000	1.000000
+
 0.800000	3.811194e-08	20.000000	1.000000
+
 0.900000	4.137525e-08	20.000000	1.000000
+
 0.800000	4.252364e-08	20.000000	1.000000
+
 0.600000	3.036380e-08	20.000000	1.000000
+
 0.400000	3.727293e-08	20.000000	1.000000
+
 0.200000	3.745932e-08	20.000000	1.000000
+
 0.000000	3.399344e-08	20.000000	1.000000
 
 Navigate to the "Polysulfone isotherms" tab in the Excel file (manually or through the hyperlink in the "Table of Contents") and copy cells A1:D30 to .txt file in a desired folder. Run FitIsoAndDeff.m from Matlab by typing "FitIsoAndDeff" in the command window. The code will prompt the user for the sample name (Polysulfone) and then request the user to supply which sorption modes should be included in the mobile or immobile concentrations. For this example, when the first prompt appears:
