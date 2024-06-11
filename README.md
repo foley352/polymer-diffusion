@@ -17,9 +17,13 @@ Download Raw_Data_Compiled_Excel.xlsx from the supporting information of "A gene
 The code will create figures of each humidity step and show the progress of fitting a effective diffusivity to the experimental data. Once completed, the effective diffusivity data will be saved in a text file names "[filename]_Diffusivity.txt" and should look like the example below.
 
 Polysulfone
+
 Thickness/Radius: 0.176 cm
+
 Geometry:Slab
+
 Temperature (°C):20
+
 RH	D / cm^2/s	Temperature(°C)	Weights
 
 0.200000	3.859221e-08	20.000000	1.000000
