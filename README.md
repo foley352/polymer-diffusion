@@ -60,7 +60,7 @@ A dialog box will now open first requesting users to select the isotherm files (
 
 ## What the codes do
 
-DeffIso uses the matlab built-in pdepe function to solve the 1-D diffusion equation da/dt = x^-m d/dx Deff*x^m da/dx where x is the spatial variable and m = 0 for slab, 1 for tall cylinders, and 2 for spheres. Note that thin cylinders are treated as slab. The interior boundary condition at the symmetry line of the material is da/dx = 0 and at the boundary is a=a(t), where the real relative humidity or concentration data is used as the boundary condition and is non-constant. This non-constant boundary condition can slow down the matlab code becuase it will evaluate the boundary condition more often if higher time-resoltuion data is supplied. The time resolution supplied to the code can be altered by defining the samplerate variable, for example, DeffCalculator([0:20:80,90],10), will only include ever 10th datapoint when fitting Deff. This can greatly speed up the estimatation of Deff when time resolutions are excessively high.
+DeffIso uses the matlab built-in pdepe function to solve the 1-D diffusion equation da/dt = x^-m d/dx Deff\*x^m da/dx where x is the spatial variable and m = 0 for slab, 1 for tall cylinders, and 2 for spheres. Note that thin cylinders are treated as slab. The interior boundary condition at the symmetry line of the material is da/dx = 0 and at the boundary is a=a(t), where the real relative humidity or concentration data is used as the boundary condition and is non-constant. This non-constant boundary condition can slow down the matlab code becuase it will evaluate the boundary condition more often if higher time-resoltuion data is supplied. The time resolution supplied to the code can be altered by defining the samplerate variable, for example, DeffCalculator([0:20:80,90],10), will only include ever 10th datapoint when fitting Deff. This can greatly speed up the estimatation of Deff when time resolutions are excessively high.
 
 The code estimates Deff by first guessing Deff based on the slope of the uptake versus sqrt(time) curve, and then finds lower and upper bounds on the best fit. The bisects the lower and upper bound iteratively until the certainty in the best-fit Deff is below the desired threshold (maxerror). The user can choose to supply a Matlab array as the dynamic data, by 
 
@@ -73,21 +73,21 @@ FitIsoAndDeff simultaneously fits the c(a,T) and Deff(a,T) using the Latin Hyper
 The model fits to the data are in the form:
 
 total concentration = mobile(Langmuir + Henry's + Pooling) + immobile (Lanmguir + Henry's + Pooling)
-effective diffusivity = mobile concentration/a/(d(total concentration)/da)*D
+effective diffusivity = mobile concentration/a/(d(total concentration)/da)\*D
 
 where D is the intrinsic diffusivity and a is the activity. Activity can be relative pressure, pressure, or concentration. Further:
 
-Langmuir = b*a/(1+b*a)*L
-Henry's = H*a
-Pooling = p*a^n
+Langmuir = b\*a/(1+b\*a)\*L
+Henry's = H\*a
+Pooling = p\*a^n
 
 with separate variables used for mobile and immobile species. These codes can fit multiple temperatures simultaneously if the user supplies them (by holding control when selecting isotherm and diffusivity files), in which case the following variables take Arrhenius or van't Hoff forms: b, H, p, D. These temperature dependencies are described by equations of the form:
 
-f(T) = f(T = 20 °C)*exp(-dlnfdinvT*(1/T - 1/293.15 K ))
+f(T) = f(T = 20 °C)\*exp(-dlnfdinvT\*(1/T - 1/293.15 K ))
 
 where f is a variable (b, H, p, or D) and dlnfdinvT is the derivative d ln f/d(1/T), which is related to the activation energy (or enthalpy of sorption) by Ea (or dH) = -R d ln f/d(1/T). When fitting multiple tempratures, f(T = 20 °C) and dlnfdinvT are two independent parameters.
 
-Confidence intervals for parameters are determined by calculating the jacobian (J), approximating the Hessian (H) as H=inv(transpose(J)*J). The standard error squared is the error / dof, where dof is the degrees of freedom = # of datapoints - # of parameters. The t-value corresponding to the 95% confidence interval is an inverse of the Student-T function for teh specified degrees of freedom at a value of 0.025. Finally, the error for each parameter is t_value*sqrt(standard error squared * diagonal(H)), where each diagonal of the Hessian corresponds to variance of a parameter.
+Confidence intervals for parameters are determined by calculating the jacobian (J), approximating the Hessian (H) as H=inv(transpose(J)\*J). The standard error squared is the error / dof, where dof is the degrees of freedom = # of datapoints - # of parameters. The t-value corresponding to the 95% confidence interval is an inverse of the Student-T function for teh specified degrees of freedom at a value of 0.025. Finally, the error for each parameter is t_value\*sqrt(standard error squared \* diagonal(H)), where each diagonal of the Hessian corresponds to variance of a parameter.
 
 ## License
 MIT License
