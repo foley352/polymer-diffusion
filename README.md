@@ -78,7 +78,9 @@ effective diffusivity = mobile concentration/a/(d(total concentration)/da)\*D
 where D is the intrinsic diffusivity and a is the activity. Activity can be relative pressure, pressure, or concentration. Further:
 
 Langmuir = b\*a/(1+b\*a)\*L
+
 Henry's = H\*a
+
 Pooling = p\*a^n
 
 with separate variables used for mobile and immobile species. These codes can fit multiple temperatures simultaneously if the user supplies them (by holding control when selecting isotherm and diffusivity files), in which case the following variables take Arrhenius or van't Hoff forms: b, H, p, D. These temperature dependencies are described by equations of the form:
